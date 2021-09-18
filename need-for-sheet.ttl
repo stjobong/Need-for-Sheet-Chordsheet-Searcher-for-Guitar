@@ -1,0 +1,1116 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX urn: <http://example.org/> 
+PREFIX mo: <http://purl.org/ontology/mo/> 
+PREFIX dc: <http://purl.org/dc/elements/1.1/> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
+
+<urn:NeedForSheet> a owl:Ontology ; 
+                   dc:creator "Jonas Bongartz", "Marius Defèe" ;
+                   dc:created "2021-09-12"^^xsd:date ;
+                   rdfs:label "Need for Sheet Ontology"@en , "Need for Sheet Onotologie"@de ;
+                   dc:description "An ontology for the web application Need for Sheet. This ontology contains a description of chords, musicians and songs to allow a person to filter out songs precisely by name, artist, difficulty and the chords they can play"@en , 
+                                  "Eine Ontologie für die Webanwendung Need for Sheet. Diese Ontologie enthält eine Beschreibung von Akkorden, Musikern und Liedern, um es einer Person zu ermöglichen, Lieder genau nach Name, Künstler, Schwierigkeitsgrad und den Akkorden, die sie spielen können, herauszufiltern" ;
+                   owl:versionIRI "http://example.org/"^^xsd:string ;
+                   owl:versionInfo "$Date: 2021/09/15 11:41:41$" .
+
+
+<urn:NeedForSheet:Chords> a owl:Class ;
+    owl:sameAs <http://dbpedia.org/resource/Chord_(music)> ;
+    rdfs:label "Chords"@en , "Akkorde"@de .
+
+<urn:NeedForSheet:hasChord> a rdf:Property ;
+    rdfs:label "has chord"@en , "hat Akkord"@de ;
+    owl:domain mo:MusicalWork ;
+    owl:range <urn:NeedForSheet:Chords> ;
+    owl:minCardinality 1 .
+
+<urn:NeedForSheet:Difficulty> a owl:Class ;
+    rdfs:label "Difficulty"@en , "Schwierigkeitsgrad"@de .
+
+<urn:NeedForSheet:hasDifficulty> a rdf:Property ;
+    rdfs:label "has difficulty"@en , "hat Schwierigkeitsgrad"@de ;
+    owl:domain mo:MusicalWork ;
+    owl:range <urn:NeedForSheet:Difficulty> ;
+    owl:minCardinality 1 ;
+    owl:maxCardinality 1 .
+
+    <urn:NeedForSheet:isEasier> a rdf:Property ;
+    rdfs:label "is easier"@en , "ist einfacher"@de ;
+    owl:domain <urn:NeedForSheet:Difficulty> ;
+    owl:range <urn:NeedForSheet:Difficulty> .
+
+    <urn:NeedForSheet:isHarder> a rdf:Property ;
+    rdfs:label "is harder"@en , "ist schwerer"@de ;
+    owl:domain <urn:NeedForSheet:Difficulty> ;
+    owl:range <urn:NeedForSheet:Difficulty> .
+
+<urn:NeedForSheet:hasChordsheet> a rdf:Property ;
+rdfs:label "has Chordsheet"@en , "hat Akkordblatt"@de ;
+owl:domain mo:MusicalWork ;
+owl:range xsd:string ;
+owl:minCardinality 1 .
+
+<urn:NeedForSheet:beginner> a <urn:NeedForSheet:Difficulty> ;
+    rdfs:label "Beginner"@en , "Anfänger"@de ;
+    <urn:NeedForSheet:isEasier> <urn:NeedForSheet:intermediate>, <urn:NeedForSheet:advanced> .
+
+<urn:NeedForSheet:intermediate> a <urn:NeedForSheet:Difficulty> ;
+    rdfs:label "Intermediate"@en , "Amateur"@de ;
+    <urn:NeedForSheet:isEasier> <urn:NeedForSheet:advanced> ;
+    <urn:NeedForSheet:isHarder> <urn:NeedForSheet:beginner> .
+
+<urn:NeedForSheet:advanced> a <urn:NeedForSheet:Difficulty> ;
+    rdfs:label "Advanced"@en , "Fortgeschritten"@de ;
+    <urn:NeedForSheet:isHarder> <urn:NeedForSheet:beginner>, <urn:NeedForSheet:intermediate> .
+
+
+<urn:NeedForSheet:A#> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "A#" .
+
+<urn:NeedForSheet:Gm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gm" .
+
+<urn:NeedForSheet:D#> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D#" .
+
+<urn:NeedForSheet:D#dim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D#dim" .
+
+<urn:NeedForSheet:Cmaj7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Cmaj7" .
+
+<urn:NeedForSheet:Gsus> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gsus" .
+
+<urn:NeedForSheet:Asus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Asus2" .
+
+<urn:NeedForSheet:C#> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C#" .
+
+<urn:NeedForSheet:C#dim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C#dim" .
+
+<urn:NeedForSheet:Cm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Cm" .
+
+<urn:NeedForSheet:Bbm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bbm" .
+
+<urn:NeedForSheet:E5> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "E5" .
+
+<urn:NeedForSheet:E7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "E7" .
+
+<urn:NeedForSheet:Dmaj7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dmaj7" .
+
+<urn:NeedForSheet:A7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "A7" .
+
+<urn:NeedForSheet:Dadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dadd9" .
+
+<urn:NeedForSheet:Bsus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bsus2" .
+
+<urn:NeedForSheet:F#> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F#" .
+
+<urn:NeedForSheet:Db> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Db" .
+
+<urn:NeedForSheet:F#dim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F#dim" .
+
+<urn:NeedForSheet:Csus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Csus2" .
+
+<urn:NeedForSheet:Cadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Cadd9" .
+
+<urn:NeedForSheet:Dm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dm" .
+
+<urn:NeedForSheet:C#m> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C#m" .
+
+<urn:NeedForSheet:Bm7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bm7" .
+
+<urn:NeedForSheet:Dm7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dm7" .
+
+<urn:NeedForSheet:G#> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "G#" .
+
+<urn:NeedForSheet:G#m> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "G#m" .
+
+<urn:NeedForSheet:F6> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F6" .
+
+<urn:NeedForSheet:Dsus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dsus2" .
+
+<urn:NeedForSheet:Dsus4> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Dsus4" .
+
+<urn:NeedForSheet:B7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "B7" .
+
+<urn:NeedForSheet:Aadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Aadd9" .
+
+<urn:NeedForSheet:D#7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D#7" .
+
+<urn:NeedForSheet:F#7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F#7" .
+
+<urn:NeedForSheet:Bbdim7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bbdim7" .
+
+<urn:NeedForSheet:Eb> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Eb" .
+
+<urn:NeedForSheet:A> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "A" .
+
+<urn:NeedForSheet:Ab> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Ab" .
+
+<urn:NeedForSheet:B> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "B" .
+
+<urn:NeedForSheet:C> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C" .
+
+<urn:NeedForSheet:D> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D" .
+
+<urn:NeedForSheet:Esus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Esus2" .
+
+<urn:NeedForSheet:E> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "E" .
+
+<urn:NeedForSheet:F> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F" .
+
+<urn:NeedForSheet:G> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "G" .
+
+<urn:NeedForSheet:Em> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Em" .
+
+<urn:NeedForSheet:Esus4> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Esus4" .
+
+<urn:NeedForSheet:Am> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Am" .
+
+<urn:NeedForSheet:G7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "G7" .
+
+<urn:NeedForSheet:C6> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C6" .
+
+<urn:NeedForSheet:Gsus4> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gsus4" .
+
+<urn:NeedForSheet:C7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "C7" .
+
+<urn:NeedForSheet:Fsus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Fsus2" .
+
+<urn:NeedForSheet:Bb> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bb" .
+
+<urn:NeedForSheet:Gdim7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gdim7" .
+
+<urn:NeedForSheet:Ddim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Ddim" .
+
+<urn:NeedForSheet:Fm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Fm" .
+
+<urn:NeedForSheet:Gadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gadd9" .
+
+<urn:NeedForSheet:Am7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Am7" .
+
+<urn:NeedForSheet:Fmaj7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Fmaj7" .
+
+<urn:NeedForSheet:B7sus2> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "B7sus2" .
+
+<urn:NeedForSheet:Bm> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bm" .
+
+<urn:NeedForSheet:Am6> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Am6" .
+
+<urn:NeedForSheet:Am9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Am9" .
+
+<urn:NeedForSheet:Emadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Emadd9" .
+
+<urn:NeedForSheet:Cm6> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Cm6" .
+
+<urn:NeedForSheet:Em7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Em7" .
+
+<urn:NeedForSheet:D4> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D4" .
+
+<urn:NeedForSheet:Em9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Em9" .
+
+<urn:NeedForSheet:F#m> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "F#m" .
+
+<urn:NeedForSheet:D5> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D5" .
+
+<urn:NeedForSheet:D7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "D7" .
+
+<urn:NeedForSheet:Gmaj7> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Gmaj7" .
+
+<urn:NeedForSheet:Bbdim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Bbdim" .
+
+<urn:NeedForSheet:Am7b5> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Am7b5" .
+
+<urn:NeedForSheet:Cdim> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Cdim" .
+
+<urn:NeedForSheet:Amadd9> a <urn:NeedForSheet:Chords> ;
+    rdfs:label "Amadd9" .
+
+<urn:NeedForSheet:Bob_Dylan> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bob_Dylan> .
+
+<urn:NeedForSheet:Knockin'_on_Heaven's_Door> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Knockin'_on_Heaven's_Door> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bob_Dylan> ;
+    foaf:depiction "https://ia601606.us.archive.org/32/items/mbid-e114a1ae-b1c5-380a-b291-6f95875c8990/mbid-e114a1ae-b1c5-380a-b291-6f95875c8990-16197828498.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bob-dylan/knockin-on-heavens-door-chords-66559" .
+
+<urn:NeedForSheet:Charlie_Puth> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Charlie_Puth> .
+
+<urn:NeedForSheet:We_Don't_Talk_Anymore> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/We_Don't_Talk_Anymore_(Charlie_Puth_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Charlie_Puth> ;
+    foaf:depiction "https://ia601306.us.archive.org/8/items/mbid-6091a9cd-a772-47b9-8082-727facacc97b/mbid-6091a9cd-a772-47b9-8082-727facacc97b-13534941404.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/charlie-puth/we-dont-talk-anymore-chords-1807087" .
+
+<urn:NeedForSheet:Justin_Bieber> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Justin_Bieber> .
+
+<urn:NeedForSheet:Baby> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Baby_(Justin_Bieber_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Justin_Bieber> ;
+    foaf:depiction "https://ia800300.us.archive.org/16/items/mbid-ca4bd939-c85e-466d-94ca-71c0ca9e263c/mbid-ca4bd939-c85e-466d-94ca-71c0ca9e263c-6892646373.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/justin-bieber/baby-chords-911859" .
+
+<urn:NeedForSheet:Jeff_Buckley> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Jeff_Buckley> .
+
+<urn:NeedForSheet:Hallelujah> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Hallelujah_(Leonard_Cohen_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:B7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Jeff_Buckley> , <urn:NeedForSheet:Leonard_Cohen> ;
+    foaf:depiction "https://ia802702.us.archive.org/23/items/mbid-b2f862e5-a1f3-475d-85a1-6cb1160286aa/mbid-b2f862e5-a1f3-475d-85a1-6cb1160286aa-7928896921.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/jeff-buckley/hallelujah-chords-27336" .
+
+
+<urn:NeedForSheet:Bob_Marley> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bob_Marley> .
+
+<urn:NeedForSheet:Redemption_Song> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Redemption_Song> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Am6> , <urn:NeedForSheet:Em7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bob_Marley> ;
+    foaf:depiction "https://ia600302.us.archive.org/13/items/mbid-f05b59f2-edc1-4c33-8dc9-795ace7f1c3e/mbid-f05b59f2-edc1-4c33-8dc9-795ace7f1c3e-9715816235.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bob-marley/redemption-song-chords-417640" .
+
+<urn:NeedForSheet:Miley_Cyrus> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Miley_Cyrus> .
+
+<urn:NeedForSheet:Wrecking_Ball> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Wrecking_Ball_(Miley_Cyrus_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F#m> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Miley_Cyrus> ;
+    foaf:depiction "https://ia803204.us.archive.org/25/items/mbid-aeb037b8-52da-43a4-8b4d-d980ce354e07/mbid-aeb037b8-52da-43a4-8b4d-d980ce354e07-27181018015.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/miley-cyrus/wrecking-ball-chords-1414450" .
+
+<urn:NeedForSheet:Demi_Lovato> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Demi_Lovato> .
+
+<urn:NeedForSheet:Stone_Cold> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Stone_Cold_(Demi_Lovato_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:G7> , <urn:NeedForSheet:Am7b5> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Demi_Lovato> ;
+    foaf:depiction "https://ia601300.us.archive.org/22/items/mbid-804760a1-45a1-4985-9eb0-5ae81a60cb56/mbid-804760a1-45a1-4985-9eb0-5ae81a60cb56-12330341931.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/demi-lovato/stone-cold-chords-1772609" .
+
+<urn:NeedForSheet:Kodaline> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Kodaline> .
+
+<urn:NeedForSheet:High_Hopes> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/High_Hopes_(Kodaline_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:E7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Kodaline> ;
+    foaf:depiction "https://ia800703.us.archive.org/30/items/mbid-5823c509-b8bb-421a-8b6c-d1df444c783e/mbid-5823c509-b8bb-421a-8b6c-d1df444c783e-21478269134.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/kodaline/high-hopes-chords-1213220" .
+
+<urn:NeedForSheet:Billie_Eilish> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Billie_Eilish> .
+
+<urn:NeedForSheet:When_the_Party's_Over> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/When_the_Party's_Over_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:F#dim> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Billie_Eilish> ;
+    foaf:depiction "https://ia803405.us.archive.org/11/items/mbid-6789dd53-0ec6-410c-9c71-c4a75c12d214/mbid-6789dd53-0ec6-410c-9c71-c4a75c12d214-28779637433.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/billie-eilish/when-the-partys-over-chords-2306755" .
+
+<urn:NeedForSheet:Birdy> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Birdy_(singer)> .
+
+<urn:NeedForSheet:Skinny_Love> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Skinny_Love> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Birdy> ;
+    foaf:depiction "https://ia601309.us.archive.org/4/items/mbid-128d7276-da6c-4a3d-b5a6-eb2c0ffcae50/mbid-128d7276-da6c-4a3d-b5a6-eb2c0ffcae50-11258108852.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/birdy/skinny-love-chords-1063670" .
+
+<urn:NeedForSheet:Lorde> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lorde> .
+
+<urn:NeedForSheet:Royals> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Royals_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lorde> ;
+    foaf:depiction "https://ia803008.us.archive.org/30/items/mbid-2a7efb0f-cce9-41e8-bf09-78ebef089e20/mbid-2a7efb0f-cce9-41e8-bf09-78ebef089e20-5330409808.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lorde/royals-chords-1418611" .
+
+<urn:NeedForSheet:Tracy_Chapman> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Tracy_Chapman> .
+
+<urn:NeedForSheet:Fast_Car> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Fast_Car> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cmaj7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Tracy_Chapman> ;
+    foaf:depiction "https://ia800308.us.archive.org/23/items/mbid-b63ffa5b-a0f0-428f-b276-110e98ed2f49/mbid-b63ffa5b-a0f0-428f-b276-110e98ed2f49-2098978146.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/tracy-chapman/fast-car-chords-1044807" .
+
+<urn:NeedForSheet:4_Non_Blondes> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/4_Non_Blondes> .
+
+<urn:NeedForSheet:What's_Up> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/What's_Up%3F_(4_Non_Blondes_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:4_Non_Blondes> ;
+    foaf:depiction "https://ia800700.us.archive.org/5/items/mbid-5708a868-558b-4a8a-9593-558a638e1993/mbid-5708a868-558b-4a8a-9593-558a638e1993-8423939044.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/4-non-blondes/whats-up-chords-349210" .
+
+<urn:NeedForSheet:Leonard_Cohen> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Leonard_Cohen> .
+
+<urn:NeedForSheet:OneRepublic> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/OneRepublic> .
+
+<urn:NeedForSheet:Counting_Stars> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Counting_Stars> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:OneRepublic> ;
+    foaf:depiction "https://ia800903.us.archive.org/5/items/mbid-68c743b9-031f-4784-bc19-35575d3d3cab/mbid-68c743b9-031f-4784-bc19-35575d3d3cab-9154774005.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/onerepublic/counting-stars-chords-1233464" .
+
+<urn:NeedForSheet:Cage_the_Elephant> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Cage_the_Elephant> .
+
+<urn:NeedForSheet:Cigarette_Daydreams> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Cigarette_Daydreams> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dmaj7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F#m> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Cage_the_Elephant> ;
+    foaf:depiction "https://ia903003.us.archive.org/22/items/mbid-4a85fb7b-230a-4b90-a99f-2044c3858457/mbid-4a85fb7b-230a-4b90-a99f-2044c3858457-5070223502.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/cage-the-elephant/cigarette-daydreams-chords-1423735" .
+
+<urn:NeedForSheet:Harry_Styles> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Harry_Styles> .
+
+<urn:NeedForSheet:Sign_of_the_Times> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Sign_of_the_Times_(Harry_Styles_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:C7> , <urn:NeedForSheet:Bb> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Harry_Styles> ;
+    foaf:depiction "https://ia801609.us.archive.org/17/items/mbid-d2d3b825-1a7f-4a6a-8beb-80c18b00db3e/mbid-d2d3b825-1a7f-4a6a-8beb-80c18b00db3e-16470211033.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/harry-styles/sign-of-the-times-chords-1977209" .
+
+<urn:NeedForSheet:Chris_Isaak> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Chris_Isaak> .
+
+<urn:NeedForSheet:Wicked_Game> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Wicked_Game> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A> , <urn:NeedForSheet:E> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Chris_Isaak> ;
+    foaf:depiction "https://ia800906.us.archive.org/11/items/mbid-785cd05a-5977-41d4-8c98-8a4be5f2a71a/mbid-785cd05a-5977-41d4-8c98-8a4be5f2a71a-22119736287.png" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/chris-isaak/wicked-game-chords-11066" .
+
+<urn:NeedForSheet:Of_Monsters_and_Men> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Of_Monsters_and_Men> .
+
+<urn:NeedForSheet:Dirty_Paws> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Dirty_Paws> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Fmaj7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Of_Monsters_and_Men> ;
+    foaf:depiction "https://ia801701.us.archive.org/20/items/mbid-ca7937ce-9806-42e0-9894-8fb8a20a6ade/mbid-ca7937ce-9806-42e0-9894-8fb8a20a6ade-26975651810.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/of-monsters-and-men/dirty-paws-chords-1104999" .
+
+<urn:NeedForSheet:David_Bowie> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/David_Bowie> .
+
+<urn:NeedForSheet:Space_Oddity> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Space_Oddity> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:E7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:E> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Bb> , <urn:NeedForSheet:Fm> , <urn:NeedForSheet:Fmaj7> , <urn:NeedForSheet:D7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:David_Bowie> ;
+    foaf:depiction "https://ia801900.us.archive.org/14/items/mbid-cb3abfdc-f687-45f6-b72b-3e4b0064f01f/mbid-cb3abfdc-f687-45f6-b72b-3e4b0064f01f-15516363110.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/david-bowie/space-oddity-chords-1088565" .
+
+<urn:NeedForSheet:Plain_White_T's> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Plain_White_T's> .
+
+<urn:NeedForSheet:Hey_There_Delilah> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Hey_There_Delilah> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Plain_White_T's> ;
+    foaf:depiction "https://ia600905.us.archive.org/9/items/mbid-b2d4a971-4f86-4fc7-bdef-6e6012fbcc67/mbid-b2d4a971-4f86-4fc7-bdef-6e6012fbcc67-22586309500.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/plain-white-ts/hey-there-delilah-chords-368170" .
+
+<urn:NeedForSheet:Hillsong_United> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Hillsong_United> .
+
+<urn:NeedForSheet:Oceans_(Where_Feet_May_Fail)> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Oceans_(Where_Feet_May_Fail)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Hillsong_United> ;
+    foaf:depiction "https://ia802704.us.archive.org/27/items/mbid-001dc6f0-62b5-4745-bfa5-f9edf136e6fe/mbid-001dc6f0-62b5-4745-bfa5-f9edf136e6fe-9245207589.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/hillsong-united/oceans-where-feet-may-fail-chords-1218238" .
+
+<urn:NeedForSheet:Jason_Mraz> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Jason_Mraz> .
+
+<urn:NeedForSheet:I_Won't_Give_Up> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/I_Won't_Give_Up> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Asus2> , <urn:NeedForSheet:C#dim> , <urn:NeedForSheet:A> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Jason_Mraz> ;
+    foaf:depiction "https://ia800307.us.archive.org/16/items/mbid-fb8bdcf2-5db8-446d-ad95-9043864b7e9b/mbid-fb8bdcf2-5db8-446d-ad95-9043864b7e9b-869803328.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/jason-mraz/i-wont-give-up-chords-1121837" .
+
+<urn:NeedForSheet:Judy_Garland> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Judy_Garland> .
+
+<urn:NeedForSheet:Have_Yourself_a_Merry_Little_Christmas> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Have_Yourself_a_Merry_Little_Christmas> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cmaj7> , <urn:NeedForSheet:E7> , <urn:NeedForSheet:A7> , <urn:NeedForSheet:B7> , <urn:NeedForSheet:F#7> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:G7> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:Cm6> , <urn:NeedForSheet:Em7> , <urn:NeedForSheet:D7> , <urn:NeedForSheet:Gmaj7> , <urn:NeedForSheet:Bbdim> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Judy_Garland> ;
+    foaf:depiction "https://ia800902.us.archive.org/21/items/mbid-e711da2c-8323-4472-8078-75e7cc640972/mbid-e711da2c-8323-4472-8078-75e7cc640972-22179524162.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/judy-garland/have-yourself-a-merry-little-christmas-chords-762486" .
+
+<urn:NeedForSheet:Queen> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Queen_(band)> .
+
+<urn:NeedForSheet:Bohemian_Rhapsody> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Bohemian_Rhapsody> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A#> , <urn:NeedForSheet:Gm> , <urn:NeedForSheet:D#> , <urn:NeedForSheet:D#dim> , <urn:NeedForSheet:C#> , <urn:NeedForSheet:A7> , <urn:NeedForSheet:F#> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:Dm7> , <urn:NeedForSheet:G#> , <urn:NeedForSheet:G#m> , <urn:NeedForSheet:D#7> , <urn:NeedForSheet:Bbdim7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:Ab> , <urn:NeedForSheet:B> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:E> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:G7> , <urn:NeedForSheet:Bb> , <urn:NeedForSheet:Ddim> , <urn:NeedForSheet:Fm> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Em7> , <urn:NeedForSheet:D7> , <urn:NeedForSheet:Bbdim> , <urn:NeedForSheet:Cdim> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:advanced> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Queen> ;
+    foaf:depiction "https://ia803000.us.archive.org/10/items/mbid-195e1c9d-82b7-43da-b38c-3a41c3277153/mbid-195e1c9d-82b7-43da-b38c-3a41c3277153-23666194666.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/queen/bohemian-rhapsody-chords-1716013" .
+
+<urn:NeedForSheet:Bing_Crosby> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bing_Crosby> .
+
+<urn:NeedForSheet:White_Christmas> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/White_Christmas_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:G7> , <urn:NeedForSheet:Gsus4> , <urn:NeedForSheet:D7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bing_Crosby> ;
+    foaf:depiction "https://ia902801.us.archive.org/24/items/mbid-625af31e-676e-4a50-aea9-6bc56e87f91f/mbid-625af31e-676e-4a50-aea9-6bc56e87f91f-20751640199.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bing-crosby/white-christmas-chords-40013" .
+
+<urn:NeedForSheet:Sia> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Sia_(musician)> .
+
+<urn:NeedForSheet:Chandelier> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Chandelier_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Sia> ;
+    foaf:depiction "https://ia801302.us.archive.org/35/items/mbid-2f39c5f4-5c12-465d-91aa-59a253ad643c/mbid-2f39c5f4-5c12-465d-91aa-59a253ad643c-13865799377.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/sia/chandelier-chords-1476462" .
+
+<urn:NeedForSheet:Sam_Smith> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Sam_Smith> .
+
+<urn:NeedForSheet:Lay_Me_Down> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Lay_Me_Down_(Sam_Smith_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dmaj7> , <urn:NeedForSheet:C#m> , <urn:NeedForSheet:Aadd9> , <urn:NeedForSheet:A> , <urn:NeedForSheet:B> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:E> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:B7sus2> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F#m> , <urn:NeedForSheet:Gmaj7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Sam_Smith> ;
+    foaf:depiction "https://ia802607.us.archive.org/11/items/mbid-65c57ac5-16da-4bf5-bd92-d6ad040ddd41/mbid-65c57ac5-16da-4bf5-bd92-d6ad040ddd41-26972985651.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/sam-smith/lay-me-down-chords-1399397" .
+
+<urn:NeedForSheet:Shawn_Mendes> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Shawn_Mendes> .
+
+<urn:NeedForSheet:Mercy> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Mercy_(Shawn_Mendes_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Bm7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Shawn_Mendes> ;
+    foaf:depiction "https://ia601203.us.archive.org/14/items/mbid-e22e7a3e-a5b3-4c03-9a83-74139bbe6403/mbid-e22e7a3e-a5b3-4c03-9a83-74139bbe6403-14789013576.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/shawn-mendes/mercy-chords-1868114" .
+
+<urn:NeedForSheet:Green_Day> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Green_Day> .
+
+<urn:NeedForSheet:Good_Riddance_(Time_of_Your_Life)> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Good_Riddance_(Time_of_Your_Life)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cadd9> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Green_Day> ;
+    foaf:depiction "https://ia902609.us.archive.org/13/items/mbid-e17c31ac-eb5a-3c7c-9d10-6735630d6946/mbid-e17c31ac-eb5a-3c7c-9d10-6735630d6946-8796468370.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/green-day/good-riddance-time-of-your-life-chords-12835" .
+
+<urn:NeedForSheet:Lana_Del_Rey> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lana_Del_Rey> .
+
+<urn:NeedForSheet:Blue_Jeans> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Blue_Jeans_(Lana_Del_Rey_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Fm> , <urn:NeedForSheet:Eb> , <urn:NeedForSheet:Bb> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lana_Del_Rey> ;
+    foaf:depiction "https://ia903106.us.archive.org/28/items/mbid-50b998d6-d262-4f69-9894-49e6f01b7a11/mbid-50b998d6-d262-4f69-9894-49e6f01b7a11-29825924326.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lana-del-rey/blue-jeans-chords-1095078" .
+
+<urn:NeedForSheet:Lil_Wayne> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lil_Wayne> .
+
+<urn:NeedForSheet:How_to_Love> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/How_to_Love> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cmaj7> , <urn:NeedForSheet:Cm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Gmaj7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lil_Wayne> ;
+    foaf:depiction "https://ia801802.us.archive.org/31/items/mbid-45a84e45-655c-482b-acd2-c7e9603c89ab/mbid-45a84e45-655c-482b-acd2-c7e9603c89ab-27776380125.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lil-wayne/how-to-love-chords-1061108" .
+
+<urn:NeedForSheet:Adele> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Adele> .
+
+<urn:NeedForSheet:Set_Fire_to_the_Rain> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Set_Fire_to_the_Rain> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Gm> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:A#> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Bb> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Adele> ;
+    foaf:depiction "https://ia600703.us.archive.org/18/items/mbid-6471caa0-021f-4aed-a6f6-3cb43912b9c5/mbid-6471caa0-021f-4aed-a6f6-3cb43912b9c5-5179862509.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/adele/set-fire-to-the-rain-chords-1023270" .
+
+<urn:NeedForSheet:Lady_Gaga> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lady_Gaga> .
+
+<urn:NeedForSheet:Million_Reasons> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Million_Reasons> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Fsus2> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lady_Gaga> ;
+    foaf:depiction "https://ia801205.us.archive.org/6/items/mbid-fe610bb2-88e1-4ce8-a723-19d0b16c3b01/mbid-fe610bb2-88e1-4ce8-a723-19d0b16c3b01-14716160882.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lady-gaga/million-reasons-chords-1884102" .
+
+<urn:NeedForSheet:One_Direction> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/One_Direction> .
+
+<urn:NeedForSheet:One_Thing> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/One_Thing_(One_Direction_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:One_Direction> ;
+    foaf:depiction "https://ia803207.us.archive.org/22/items/mbid-f6a8821b-d262-430f-a870-0214c9760948/mbid-f6a8821b-d262-430f-a870-0214c9760948-2932941937.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/one-direction/one-thing-chords-1109844" .
+
+<urn:NeedForSheet:Train> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Train_(band)> .
+
+<urn:NeedForSheet:Drive_By> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Drive_By_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:E7> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Train> ;
+    foaf:depiction "https://ia800301.us.archive.org/2/items/mbid-a7a800d4-9efa-447c-a8a9-1cf9a7ef0be5/mbid-a7a800d4-9efa-447c-a8a9-1cf9a7ef0be5-7968028498.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/train/drive-by-chords-1124915" .
+
+<urn:NeedForSheet:Lady_A> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lady_A> .
+
+<urn:NeedForSheet:Need_You_Now> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Need_You_Now_(Lady_Antebellum_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Gsus> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lady_A> ;
+    foaf:depiction "https://ia903200.us.archive.org/8/items/mbid-f143288b-3b88-421d-a4a2-c06752cf5e04/mbid-f143288b-3b88-421d-a4a2-c06752cf5e04-4153633557.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lady-a-lady-antebellum/need-you-now-chords-866111" .
+
+<urn:NeedForSheet:5_Seconds_of_Summer> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/5_Seconds_of_Summer> .
+
+<urn:NeedForSheet:Amnesia> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Amnesia_(5_Seconds_of_Summer_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:5_Seconds_of_Summer> ;
+    <urn:NeedForSheet:hasChordsheet> "https://ia600408.us.archive.org/10/items/mbid-f21c4924-c9f9-401a-9367-e0216ed1fded/mbid-f21c4924-c9f9-401a-9367-e0216ed1fded-13351446876.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/5-seconds-of-summer/amnesia-chords-1466985" .
+
+<urn:NeedForSheet:Ed_Sheeran> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Ed_Sheeran> .
+
+<urn:NeedForSheet:Thinking_Out_Loud> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Thinking_Out_Loud> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Ed_Sheeran> ;
+    foaf:depiction "https://ia801607.us.archive.org/6/items/mbid-a2b25883-306f-4a53-809a-a234737c209d/mbid-a2b25883-306f-4a53-809a-a234737c209d-16111741194.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/ed-sheeran/thinking-out-loud-chords-1486860" .
+
+<urn:NeedForSheet:Taylor_Swift> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Taylor_Swift> .
+
+<urn:NeedForSheet:All_Too_Well> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/All_Too_Well> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Taylor_Swift> ;
+    foaf:depiction "https://ia801306.us.archive.org/20/items/mbid-7aa4a453-627c-47ea-b371-31fbcff87b0a/mbid-7aa4a453-627c-47ea-b371-31fbcff87b0a-11473202909.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/taylor-swift/all-too-well-chords-1189554" .
+
+<urn:NeedForSheet:James_Arthur> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/James_Arthur> .
+
+<urn:NeedForSheet:Say_You_Won't_Let_Go> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Say_You_Won't_Let_Go> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:James_Arthur> ;
+    foaf:depiction "https://ia903102.us.archive.org/14/items/mbid-17225796-27ac-4c99-8aab-08de39ce710b/mbid-17225796-27ac-4c99-8aab-08de39ce710b-24631041738.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/james-arthur/say-you-wont-let-go-chords-1874747" .
+
+<urn:NeedForSheet:Rihanna> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Rihanna> .
+
+<urn:NeedForSheet:Diamonds> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Diamonds_(Rihanna_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:A> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F#m> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Rihanna> ;
+    foaf:depiction "https://ia802806.us.archive.org/0/items/mbid-6961c50b-4938-48c2-b77d-16e49492b940/mbid-6961c50b-4938-48c2-b77d-16e49492b940-25491243762.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/rihanna/diamonds-chords-1185082" .
+
+<urn:NeedForSheet:Goo_Goo_Dolls> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Goo_Goo_Dolls> .
+
+<urn:NeedForSheet:Iris> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Iris_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Bsus2> , <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F#m> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Goo_Goo_Dolls> ;
+    foaf:depiction "https://ia600207.us.archive.org/32/items/mbid-ab88cd96-8e58-46ee-98c2-bfa4a5355275/mbid-ab88cd96-8e58-46ee-98c2-bfa4a5355275-12705176736.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/goo-goo-dolls/iris-chords-54512" .
+
+<urn:NeedForSheet:Bastille> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bastille_(band)> .
+
+<urn:NeedForSheet:Pompeii> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Pompeii_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bastille> ;
+    foaf:depiction "https://ia801309.us.archive.org/14/items/mbid-99d80ba7-516e-4058-8c01-ab04e4ccca4b/mbid-99d80ba7-516e-4058-8c01-ab04e4ccca4b-11232970334.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bastille/pompeii-chords-1227805" .
+
+<urn:NeedForSheet:Lukas_Graham> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lukas_Graham> .
+
+<urn:NeedForSheet:7_Years> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/7_Years_(Lukas_Graham_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cmaj7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lukas_Graham> ;
+    foaf:depiction "https://ia801304.us.archive.org/11/items/mbid-b2e39c83-feb3-4ef5-bf7e-e003761a51c5/mbid-b2e39c83-feb3-4ef5-bf7e-e003761a51c5-11963905696.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lukas-graham/7-years-chords-1752864" .
+
+<urn:NeedForSheet:Ben_E._King> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Ben_E._King> .
+
+<urn:NeedForSheet:Stand_by_Me> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Stand_by_Me_(Ben_E._King_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Ben_E._King> ;
+    foaf:depiction "https://ia801303.us.archive.org/12/items/mbid-45411508-1c14-412b-826c-fae0108bd28e/mbid-45411508-1c14-412b-826c-fae0108bd28e-11018247563.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/ben-e-king/stand-by-me-chords-1041639" .
+
+<urn:NeedForSheet:a-ha> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/A-ha> .
+
+<urn:NeedForSheet:Take_On_Me> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Take_On_Me> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:D> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:C> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:F> , <urn:NeedForSheet:Cadd9> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:a-ha> ;
+    foaf:depiction "https://ia803203.us.archive.org/34/items/mbid-181b9a01-0446-4601-99be-b011ab615631/mbid-181b9a01-0446-4601-99be-b011ab615631-13015069966.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/a-ha/take-on-me-chords-1842621" .
+
+<urn:NeedForSheet:Lord_Huron> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Lord_Huron> .
+
+<urn:NeedForSheet:The_Night_We_Met> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/The_Night_We_Met_(Lord_Huron_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lord_Huron> ;
+    foaf:depiction "https://ia601604.us.archive.org/17/items/mbid-1b23650b-ab54-4798-8e78-3c7c95432c9a/mbid-1b23650b-ab54-4798-8e78-3c7c95432c9a-16748262545.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/lord-huron/the-night-we-met-chords-1709964" .
+
+<urn:NeedForSheet:Frank_Sinatra> a <http://purl.org/ontology/mo/MusicArtist> ;
+                                owl:sameAs <http://dbpedia.org/resource/Frank_Sinatra> .
+
+<urn:NeedForSheet:Jingle_Bells> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Jingle_Bells> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:G> , <urn:NeedForSheet:F> , <urn:NeedForSheet:D7> , <urn:NeedForSheet:G7> , <urn:NeedForSheet:F#> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Frank_Sinatra> ;
+    foaf:depiction "https://ia801808.us.archive.org/6/items/mbid-77c04db6-a45e-4036-a093-2501b95633f9/mbid-77c04db6-a45e-4036-a093-2501b95633f9-28014940830.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/frank-sinatra/jingle-bells-chords-2540178" .
+
+<urn:NeedForSheet:Israel_Kamakawiwoʻole> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Israel_Kamakawiwoʻole> .
+
+<urn:NeedForSheet:Over_the_Rainbow> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Over_the_Rainbow> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:B7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Israel_Kamakawiwoʻole> ;
+    foaf:depiction "https://ia601905.us.archive.org/27/items/mbid-8673a299-d222-429b-9f4b-a073d0649dcc/mbid-8673a299-d222-429b-9f4b-a073d0649dcc-27051261785.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/2135261" .
+
+<urn:NeedForSheet:Alex_&_Sierra> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Alex_&_Sierra> .
+
+<urn:NeedForSheet:Little_Do_You_Know> a <http://purl.org/ontology/mo/MusicalWork> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Gsus> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Alex_&_Sierra> ;
+    foaf:depiction "https://ia800904.us.archive.org/19/items/mbid-d3cc27f8-b0b1-4991-9e4c-5a5218f1fc45/mbid-d3cc27f8-b0b1-4991-9e4c-5a5218f1fc45-8515382607.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/alex-sierra/little-do-you-know-chords-1503387" .
+
+<urn:NeedForSheet:Foster_the_People> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Foster_the_People> .
+
+<urn:NeedForSheet:Pumped_Up_Kicks> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Pumped_Up_Kicks> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Eb> , <urn:NeedForSheet:Ab> , <urn:NeedForSheet:Bb> , <urn:NeedForSheet:Fm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Foster_the_People> ;
+    foaf:depiction "https://ia600306.us.archive.org/28/items/mbid-f5255b9c-6acf-49a8-9c73-1eef68714b6e/mbid-f5255b9c-6acf-49a8-9c73-1eef68714b6e-1415188005.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/foster-the-people/pumped-up-kicks-chords-1032143" .
+
+<urn:NeedForSheet:Bill_Withers> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bill_Withers> .
+
+<urn:NeedForSheet:Ain't_No_Sunshine> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Ain't_No_Sunshine> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:G>;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bill_Withers> ;
+    foaf:depiction "https://ia601303.us.archive.org/15/items/mbid-d7538ee8-0ccb-466e-9fef-67a96f7c2ec9/mbid-d7538ee8-0ccb-466e-9fef-67a96f7c2ec9-12027277674.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bill-withers/aint-no-sunshine-chords-468744" .
+
+<urn:NeedForSheet:Bruno_Mars> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Bruno_Mars> .
+
+<urn:NeedForSheet:Marry_You> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Marry_You> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Bruno_Mars> ;
+    foaf:depiction "https://ia800903.us.archive.org/14/items/mbid-6bbe5606-67ba-4063-8481-49f8d4c41852/mbid-6bbe5606-67ba-4063-8481-49f8d4c41852-8667745447.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/bruno-mars/marry-you-chords-1009718" .
+
+<urn:NeedForSheet:Katy_Perry> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Katy_Perry> .
+
+<urn:NeedForSheet:The_One_That_Got_Away> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/The_One_That_Got_Away_(Katy_Perry_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Em> , <urn:NeedForSheet:C#m> , <urn:NeedForSheet:G#m> , <urn:NeedForSheet:A> , <urn:NeedForSheet:B> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Katy_Perry> ;
+    foaf:depiction "https://ia803008.us.archive.org/23/items/mbid-8551cd49-7da6-3139-809d-e48f6f3453e8/mbid-8551cd49-7da6-3139-809d-e48f6f3453e8-6003277310.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/katy-perry/the-one-that-got-away-chords-987143" .
+
+<urn:NeedForSheet:Tom_Odell> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Tom_Odell> .
+
+<urn:NeedForSheet:Another_Love> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Another_Love_(Tom_Odell_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Tom_Odell> ;
+    foaf:depiction "https://ia903202.us.archive.org/4/items/mbid-d8997b1d-3345-4750-a7e6-fe19b96a96f3/mbid-d8997b1d-3345-4750-a7e6-fe19b96a96f3-4436735162.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/tom-odell/another-love-chords-1198980" .
+
+<urn:NeedForSheet:Gotye> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Gotye> .
+
+<urn:NeedForSheet:Somebody_That_I_Used_to_Know> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Somebody_That_I_Used_to_Know> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Gotye> ;
+    foaf:depiction "https://ia600302.us.archive.org/18/items/mbid-d72c76e2-ddf3-4c4f-9377-fe8dc2bfc549/mbid-d72c76e2-ddf3-4c4f-9377-fe8dc2bfc549-18686130576.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/gotye/somebody-that-i-used-to-know-chords-1094597" .
+
+<urn:NeedForSheet:Twenty_One_Pilots> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Twenty_One_Pilots> .
+
+<urn:NeedForSheet:Stressed_Out> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Stressed_Out> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:C> , <urn:NeedForSheet:E> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Twenty_One_Pilots> ;
+    foaf:depiction "https://ia800509.us.archive.org/13/items/mbid-136434d5-9ddf-4c62-8dcc-021ead11fe0c/mbid-136434d5-9ddf-4c62-8dcc-021ead11fe0c-10567206804.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/twenty-one-pilots/stressed-out-chords-1733581" .
+
+<urn:NeedForSheet:Don_McLean> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Don_McLean> .
+
+<urn:NeedForSheet:American_Pie> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/American_Pie_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cm> , <urn:NeedForSheet:A7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Em7> , <urn:NeedForSheet:D7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Don_McLean> ;
+    foaf:depiction "https://ia800302.us.archive.org/25/items/mbid-3c345a92-026f-484a-a9cb-8ff0b3e96621/mbid-3c345a92-026f-484a-a9cb-8ff0b3e96621-15317064041.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/don-mclean/american-pie-chords-187946" .
+
+<urn:NeedForSheet:Maroon_5> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Maroon_5> .
+
+<urn:NeedForSheet:Payphone> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Payphone_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Maroon_5> ;
+    foaf:depiction "https://ia802503.us.archive.org/30/items/mbid-490e1ba3-7284-4fe7-9fce-9f096d82a502/mbid-490e1ba3-7284-4fe7-9fce-9f096d82a502-24225125427.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/maroon-5/payphone-chords-1149303" .
+
+<urn:NeedForSheet:P!nk> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Pink_(singer)> .
+
+<urn:NeedForSheet:Just_Give_Me_a_Reason> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Just_Give_Me_a_Reason> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dsus4> , <urn:NeedForSheet:A> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:P!nk> ;
+    foaf:depiction "https://ia903401.us.archive.org/28/items/mbid-c458e7f3-4a1e-4bd2-9875-ec8ee3afab17/mbid-c458e7f3-4a1e-4bd2-9875-ec8ee3afab17-25052344281.png" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/pnk/just-give-me-a-reason-chords-1183088" .
+
+<urn:NeedForSheet:Mark_Ronson> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Mark_Ronson> .
+
+<urn:NeedForSheet:Uptown_Funk> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Uptown_Funk> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Mark_Ronson> ;
+    foaf:depiction "https://ia902704.us.archive.org/14/items/mbid-04ea8e96-ef0e-441c-9594-7128addc3951/mbid-04ea8e96-ef0e-441c-9594-7128addc3951-10315151525.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/mark-ronson/uptown-funk-chords-1683393" .
+
+<urn:NeedForSheet:Imagine_Dragons> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Imagine_Dragons> .
+
+<urn:NeedForSheet:Believer> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Believer_(Imagine_Dragons_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:E7> , <urn:NeedForSheet:E> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Imagine_Dragons> ;
+    foaf:depiction "https://ia902902.us.archive.org/9/items/mbid-fb5be15f-1bbe-4275-aa0c-5d1cea590b14/mbid-fb5be15f-1bbe-4275-aa0c-5d1cea590b14-25577981855.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/imagine-dragons/believer-chords-1941491" .
+
+<urn:NeedForSheet:Jessie_J> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Jessie_J> .
+
+<urn:NeedForSheet:Price_Tag> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Price_Tag> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Jessie_J> ;
+    foaf:depiction "https://ia801909.us.archive.org/2/items/mbid-211ecc53-685d-4bb0-a50d-e03abbe4dbff/mbid-211ecc53-685d-4bb0-a50d-e03abbe4dbff-25252155843.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/jessie-j/price-tag-chords-1031439" .
+
+<urn:NeedForSheet:Darius_Rucker> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Darius_Rucker> .
+
+<urn:NeedForSheet:Wagon_Wheel> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Wagon_Wheel_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Darius_Rucker> ;
+    foaf:depiction "https://ia802901.us.archive.org/13/items/mbid-b624c2b6-a84a-46f5-b690-c923e3aed417/mbid-b624c2b6-a84a-46f5-b690-c923e3aed417-10229915468.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/darius-rucker/wagon-wheel-chords-1215756" .
+
+<urn:NeedForSheet:Hozier> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Hozier_(musician)> .
+
+<urn:NeedForSheet:Take_Me_to_Church> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Take_Me_to_Church> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cm> , <urn:NeedForSheet:B7> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Hozier> ;
+    foaf:depiction "https://ia601303.us.archive.org/20/items/mbid-e96845cd-cadf-4c37-b9e7-11ab08742539/mbid-e96845cd-cadf-4c37-b9e7-11ab08742539-10771338794.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/hozier/take-me-to-church-chords-1513312" .
+
+<urn:NeedForSheet:Christina_Perri> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Christina_Perri> .
+
+<urn:NeedForSheet:Jar_of_Hearts> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Jar_of_Hearts> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Gm> , <urn:NeedForSheet:F#> , <urn:NeedForSheet:Bm7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:D> , <urn:NeedForSheet:E> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Gdim7> , <urn:NeedForSheet:Bm> , <urn:NeedForSheet:D5> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Christina_Perri> ;
+    foaf:depiction "https://ia800700.us.archive.org/6/items/mbid-4df1a7a8-24af-4023-b994-9c5663cbc855/mbid-4df1a7a8-24af-4023-b994-9c5663cbc855-21603503431.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/christina-perri/jar-of-hearts-chords-963934" .
+
+<urn:NeedForSheet:Louis_Armstrong> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Louis_Armstrong> .
+
+<urn:NeedForSheet:What_a_Wonderful_World> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/What_a_Wonderful_World> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:E7> , <urn:NeedForSheet:Dm> , <urn:NeedForSheet:Dm7> , <urn:NeedForSheet:A> , <urn:NeedForSheet:B> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Fmaj7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Louis_Armstrong> ;
+    foaf:depiction "https://ia902902.us.archive.org/19/items/mbid-041e03dd-985c-47df-80e8-a62769d265df/mbid-041e03dd-985c-47df-80e8-a62769d265df-15626996922.jpg" ;
+    <urn:NeedForSheet:hasChords> "https://tabs.ultimate-guitar.com/tab/louis-armstrong/what-a-wonderful-world-chords-955258" .
+
+<urn:NeedForSheet:Paramore> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Paramore> .
+
+<urn:NeedForSheet:Still_Into_You> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Still_Into_You> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Paramore> ;
+    foaf:depiction "https://ia801908.us.archive.org/0/items/mbid-edc00872-4eb3-49cc-b652-4be4aab135f1/mbid-edc00872-4eb3-49cc-b652-4be4aab135f1-29813760534.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/paramore/still-into-you-chords-1231873" .
+
+<urn:NeedForSheet:Cat_Stevens> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Cat_Stevens> .
+
+<urn:NeedForSheet:Father_and_Son> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Father_and_Son_(song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Am7> , <urn:NeedForSheet:Bm> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Cat_Stevens> ;
+    foaf:depiction "https://ia902703.us.archive.org/26/items/mbid-827a54b3-c8be-3f67-83c6-1a03586f31a5/mbid-827a54b3-c8be-3f67-83c6-1a03586f31a5-1034126125.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/cat-stevens/father-and-son-chords-84491" .
+
+<urn:NeedForSheet:John_Legend> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/John_Legend> .
+
+<urn:NeedForSheet:All_of_Me> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/All_of_Me_(John_Legend_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cmaj7> , <urn:NeedForSheet:Dadd9> , <urn:NeedForSheet:Cadd9> , <urn:NeedForSheet:C> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Amadd9> , <urn:NeedForSheet:Emadd9> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:John_Legend> ;
+    foaf:depiction "https://ia800405.us.archive.org/15/items/mbid-e4817758-aa54-471e-b041-403905bca53f/mbid-e4817758-aa54-471e-b041-403905bca53f-19088067853.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/john-legend/all-of-me-chords-1248578" .
+
+<urn:NeedForSheet:Pixies> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Pixies_(band)> .
+
+<urn:NeedForSheet:Where_Is_My_Mind?> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Where_Is_My_Mind%3F> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C#m> , <urn:NeedForSheet:G#> , <urn:NeedForSheet:A> , <urn:NeedForSheet:B> , <urn:NeedForSheet:E> , <urn:NeedForSheet:Am> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Pixies> ;
+    foaf:depiction "https://ia601005.us.archive.org/16/items/mbid-6c41681f-a5f3-47fd-9334-2f51cd4d4da4/mbid-6c41681f-a5f3-47fd-9334-2f51cd4d4da4-24223578964.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/pixies/where-is-my-mind-chords-89446" .
+
+<urn:NeedForSheet:Always_Remember_Us_This_Way> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Always_Remember_Us_This_Way> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Bb> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Lady_Gaga> ;
+    foaf:depiction "https://ia600703.us.archive.org/26/items/mbid-8bef5ae6-268c-4834-b7ca-db2bf0d5873c/mbid-8bef5ae6-268c-4834-b7ca-db2bf0d5873c-21306455865.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/misc-soundtrack/a-star-is-born-always-remember-us-this-way-chords-2484211" .
+
+<urn:NeedForSheet:The_Beatles> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/The_Beatles> .
+
+<urn:NeedForSheet:Let_It_Be> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Let_It_Be_(Beatles_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Dm7> , <urn:NeedForSheet:F6> , <urn:NeedForSheet:C> , <urn:NeedForSheet:F> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Am> , <urn:NeedForSheet:Bb> , <urn:NeedForSheet:Fmaj7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:intermediate> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:The_Beatles> ;
+    foaf:depiction "https://ia600300.us.archive.org/33/items/mbid-948dfa0a-814d-44ea-aa74-5f6658e6a9fe/mbid-948dfa0a-814d-44ea-aa74-5f6658e6a9fe-20510063345.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/the-beatles/let-it-be-chords-17427" .
+
+<urn:NeedForSheet:Rachel_Platten> a <http://purl.org/ontology/mo/MusicArtist> ;
+    owl:sameAs <http://dbpedia.org/resource/Rachel_Platten> .
+
+<urn:NeedForSheet:Fight_Song> a <http://purl.org/ontology/mo/MusicalWork> ;
+    owl:sameAs <http://dbpedia.org/resource/Fight_Song_(Rachel_Platten_song)> ;
+    <urn:NeedForSheet:hasChord> <urn:NeedForSheet:Cadd9> , <urn:NeedForSheet:D> , <urn:NeedForSheet:G> , <urn:NeedForSheet:Em> , <urn:NeedForSheet:Em7> ;
+    <urn:NeedForSheet:hasDifficulty> <urn:NeedForSheet:beginner> ;
+    <http://xmlns.com/foaf/0.1/maker> <urn:NeedForSheet:Rachel_Platten> ;
+    foaf:depiction "https://ia903006.us.archive.org/19/items/mbid-d3a2178b-1009-4a16-a990-bef3027615bf/mbid-d3a2178b-1009-4a16-a990-bef3027615bf-23064424465.jpg" ;
+    <urn:NeedForSheet:hasChordsheet> "https://tabs.ultimate-guitar.com/tab/rachel-platten/fight-song-chords-1725296" . 
